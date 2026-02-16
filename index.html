@@ -3,92 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Atomic Hub Admin</title>
+<title>Atomic Hub Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Arial;background:#0b0f14;color:white;}
-header{padding:20px;background:#111827;text-align:center;}
-nav{float:left;width:220px;height:100vh;background:#161b22;padding:15px;}
-nav button{display:block;width:100%;margin:5px 0;padding:10px;border:none;border-radius:5px;background:#5865F2;color:white;cursor:pointer;}
-main{margin-left:220px;padding:20px;}
-.card{background:#1b222b;padding:15px;border-radius:10px;margin-bottom:10px;}
-input,select{width:100%;padding:8px;margin-top:5px;border-radius:5px;border:none;}
-#notif{position:fixed;top:20px;right:20px;background:#5865F2;padding:10px 20px;border-radius:8px;display:none;}
+/* ===== Reset & Body ===== */
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Roboto',sans-serif;}
+body{background:#0b0f14;color:white;overflow:hidden;}
+
+/* ===== Background Particle/Gradient ===== */
+#bg{
+    position:fixed;width:100%;height:100%;z-index:-1;
+    background: linear-gradient(45deg,#0ff,#00f,#0f0,#0ff);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* ===== Header ===== */
+header{
+    height:70px;
+    background:#111827;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.5);
+}
+header h1{font-size:28px;letter-spacing:1px;color:#00ffcc;}
+
+/* ===== Sidebar ===== */
+nav{
+    position:fixed;top:70px;left:0;
+    width:220px;height:calc(100% - 70px);
+    background:#161b22;padding:20px;
+    display:flex;flex-direction:column;
+}
+nav button{
+    display:flex;align-items:center;gap:10px;
+    background:#5865F2;color:white;border:none;padding:12px;
+    margin:5px 0;border-radius:8px;cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+nav button:hover{background:#00ffcc;color:#111827;transform:translateX(5px);}
+
+/* ===== Main Content ===== */
+main{
+    margin-left:220px;margin-top:70px;padding:30px;
+}
+
+/* ===== Cards ===== */
+.card{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ===== Inputs & Buttons ===== */
+input, select{width:100%;padding:10px;margin-top:8px;border:none;border-radius:6px;background:#0b0f14;color:white;}
+input::placeholder{color:rgba(255,255,255,0.5);}
+button.saveBtn{background:#00ffcc;color:#111827;font-weight:bold;transition:0.3s;}
+button.saveBtn:hover{transform:translateY(-2px);box-shadow:0 4px 10px #00ffcc;}
+
+/* ===== Notification ===== */
+#notif{
+    position:fixed;top:20px;right:20px;
+    background:#00ffcc;color:#111827;padding:12px 20px;border-radius:8px;
+    display:none;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* ===== Tables / User List ===== */
+table{width:100%;border-collapse:collapse;margin-top:10px;}
+th,td{padding:10px;text-align:left;}
+th{background:rgba(255,255,255,0.1);}
+tr:nth-child(even){background:rgba(255,255,255,0.05);}
+button.actionBtn{background:#ff4d4d;color:white;padding:6px 12px;border-radius:5px;font-weight:bold;cursor:pointer;transition:0.3s;}
+button.actionBtn:hover{transform:translateY(-2px);box-shadow:0 3px 8px #ff4d4d;}
+
+/* ===== Counters Animation ===== */
+.counter{font-size:24px;font-weight:bold;color:#00ffcc;transition:all 0.5s;}
 </style>
 </head>
 <body>
 
+<div id="bg"></div>
 <div id="notif"></div>
 
-<header><h1>⚛️ Atomic Hub Admin Panel</h1></header>
+<header>
+<h1>⚛️ Atomic Hub Admin Panel</h1>
+</header>
 
 <nav>
-<button onclick="show('dashboard')">Dashboard</button>
-<button onclick="show('users')">Users</button>
-<button onclick="show('script')">Script Config</button>
-<button onclick="show('premium')">Premium</button>
-<button onclick="show('notif')">Notifications</button>
-<button onclick="show('settings')">Settings</button>
+<button onclick="showTab('dashboard')">🏠 Dashboard</button>
+<button onclick="showTab('users')">👥 Users</button>
+<button onclick="showTab('script')">⚡ Script Config</button>
+<button onclick="showTab('premium')">💎 Premium</button>
+<button onclick="showTab('notifications')">🔔 Notifications</button>
+<button onclick="showTab('settings')">⚙️ Settings</button>
 </nav>
 
 <main>
-
-<!-- DASHBOARD -->
+<!-- Dashboard -->
 <div id="dashboard">
 <h2>Dashboard Overview</h2>
 <div class="card">
-Total Users: <span id="totalUsers">0</span><br>
-Active Users: <span id="activeUsers">0</span><br>
-Executions: <span id="totalExec">0</span><br>
+Total Users: <span class="counter" id="totalUsers">0</span><br>
+Active Users: <span class="counter" id="activeUsers">0</span><br>
+Executions: <span class="counter" id="totalExec">0</span><br>
 Current Version: <span id="currentVer">1.0</span><br>
 Script Status: <span id="scriptStatus">🟢 Work</span>
 </div>
 </div>
 
-<!-- USERS -->
+<!-- Users -->
 <div id="users" style="display:none;">
 <h2>User Management</h2>
 <div class="card">
 <input id="newUser" placeholder="Add username">
-<button onclick="addUser()">Add User</button>
+<button class="saveBtn" onclick="addUser()">Add User</button>
 </div>
-<div class="card" id="userList"></div>
+<div class="card">
+<table id="userTable">
+<tr><th>#</th><th>Username</th><th>Premium</th><th>Actions</th></tr>
+</table>
+</div>
 </div>
 
-<!-- SCRIPT CONFIG -->
+<!-- Script Config -->
 <div id="script" style="display:none;">
 <h2>Script Configuration</h2>
 <div class="card">
-<label>Version</label><input id="sVersion">
+<label>Version</label>
+<input id="sVersion">
 <label>Status</label>
 <select id="sStatus">
 <option>🟢 Work</option>
 <option>🟡 Update</option>
 <option>🔴 Down</option>
 </select>
-<label>Script Link</label><input id="sLink">
-<button onclick="saveScriptConfig()">Save</button>
+<label>Script Link</label>
+<input id="sLink">
+<button class="saveBtn" onclick="saveScriptConfig()">Save</button>
 </div>
 </div>
 
-<!-- PREMIUM -->
+<!-- Premium -->
 <div id="premium" style="display:none;">
 <h2>Premium System</h2>
 <div class="card">
-<label>Premium Code</label><input id="pCode">
-<button onclick="savePremium()">Save</button>
+<label>Premium Code</label>
+<input id="pCode" placeholder="Enter premium code">
+<button class="saveBtn" onclick="savePremium()">Save</button>
 </div>
 </div>
 
-<!-- NOTIFICATIONS -->
-<div id="notifPanel" style="display:none;">
-<h2>Send Notification</h2>
+<!-- Notifications -->
+<div id="notifications" style="display:none;">
+<h2>Broadcast Notification</h2>
 <div class="card">
 <input id="notifMsg" placeholder="Message to all users">
-<button onclick="broadcast()">Send</button>
+<button class="saveBtn" onclick="broadcast()">Send Notification</button>
 </div>
 </div>
 
-<!-- SETTINGS -->
+<!-- Settings -->
 <div id="settings" style="display:none;">
 <h2>Settings</h2>
 <div class="card">
@@ -98,85 +182,102 @@ Script Status: <span id="scriptStatus">🟢 Work</span>
 <option>Light</option>
 <option>Neon</option>
 </select>
-<button onclick="saveSettings()">Save</button>
+<button class="saveBtn" onclick="saveSettings()">Save Settings</button>
 </div>
 </div>
-
 </main>
 
 <script>
-// ======== Page Switch ========
-function show(id){
-    let pages=['dashboard','users','script','premium','notifPanel','settings'];
-    pages.forEach(p=>document.getElementById(p).style.display='none');
-    document.getElementById(id).style.display='block';
+// ===== Tabs =====
+function showTab(id){
+  ['dashboard','users','script','premium','notifications','settings'].forEach(t=>document.getElementById(t).style.display='none');
+  document.getElementById(id).style.display='block';
 }
 
-// ======== Notification ========
-function notify(msg){
-    let n = document.getElementById("notif");
-    n.innerText = msg;
-    n.style.display="block";
-    setTimeout(()=>n.style.display="none",3000);
-}
-
-// ======== Fake DB / Config ========
+// ===== Fake DB / Config =====
 let config={
-    users:[],
-    version:'1.0',
-    status:'🟢 Work',
-    scriptLink:'https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua',
-    premium:'ATOMICVIP',
-    theme:'Dark'
+  users:[],
+  version:'1.0',
+  status:'🟢 Work',
+  scriptLink:'https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua',
+  premium:'ATOMICVIP',
+  theme:'Dark'
+};
+
+// ===== Notification =====
+function notify(msg){
+  let n = document.getElementById("notif");
+  n.innerText = msg;
+  n.style.display="block";
+  setTimeout(()=>n.style.display="none",3000);
 }
 
-// ======== Dashboard ========
+// ===== Dashboard =====
 function updateDashboard(){
-    document.getElementById("totalUsers").innerText=config.users.length;
-    document.getElementById("activeUsers").innerText=config.users.length; // demo
-    document.getElementById("totalExec").innerText=5421; // demo
-    document.getElementById("currentVer").innerText=config.version;
-    document.getElementById("scriptStatus").innerText=config.status;
+  document.getElementById("totalUsers").innerText=config.users.length;
+  document.getElementById("activeUsers").innerText=config.users.length;
+  document.getElementById("totalExec").innerText=5421;
+  document.getElementById("currentVer").innerText=config.version;
+  document.getElementById("scriptStatus").innerText=config.status;
 }
 updateDashboard();
 
-// ======== Users ========
-function addUser(){
-    let u=document.getElementById("newUser").value;
-    if(u){config.users.push(u); document.getElementById("newUser").value=''; renderUsers(); updateDashboard(); notify("User added ✅");}
-}
+// ===== Users =====
 function renderUsers(){
-    let list=document.getElementById("userList");
-    list.innerHTML='';
-    config.users.forEach((u,i)=>{list.innerHTML+=`<div>${i+1}. ${u} <button onclick="removeUser(${i})">Remove</button></div>`;});
+  let table=document.getElementById("userTable");
+  table.innerHTML='<tr><th>#</th><th>Username</th><th>Premium</th><th>Actions</th></tr>';
+  config.users.forEach((u,i)=>{
+    table.innerHTML+=`<tr>
+    <td>${i+1}</td>
+    <td>${u.name}</td>
+    <td>${u.premium?'✅':'❌'}</td>
+    <td>
+      <button class="actionBtn" onclick="removeUser(${i})">Remove</button>
+      <button class="actionBtn" onclick="togglePremium(${i})">Toggle Premium</button>
+    </td>
+    </tr>`;
+  });
+}
+function addUser(){
+  let name=document.getElementById("newUser").value;
+  if(name){
+    config.users.push({name:name,premium:false});
+    document.getElementById("newUser").value='';
+    renderUsers();updateDashboard();notify("User added ✅");
+  }
 }
 function removeUser(i){config.users.splice(i,1); renderUsers(); updateDashboard(); notify("User removed ❌");}
+function togglePremium(i){config.users[i].premium=!config.users[i].premium; renderUsers(); notify("Premium toggled 🔥");}
 
-// ======== Script Config ========
+// ===== Script Config =====
 function saveScriptConfig(){
-    config.version=document.getElementById("sVersion").value;
-    config.status=document.getElementById("sStatus").value;
-    config.scriptLink=document.getElementById("sLink").value;
-    updateDashboard(); notify("Script config saved ✅");
+  config.version=document.getElementById("sVersion").value;
+  config.status=document.getElementById("sStatus").value;
+  config.scriptLink=document.getElementById("sLink").value;
+  updateDashboard(); notify("Script config saved ✅");
 }
 
-// ======== Premium ========
+// ===== Premium =====
 function savePremium(){
-    config.premium=document.getElementById("pCode").value;
-    notify("Premium code updated ✅");
+  config.premium=document.getElementById("pCode").value;
+  notify("Premium code updated ✅");
 }
 
-// ======== Notifications ========
+// ===== Notifications =====
 function broadcast(){
-    let msg=document.getElementById("notifMsg").value;
-    if(msg) notify("Broadcast sent: "+msg);
+  let msg=document.getElementById("notifMsg").value;
+  if(msg){notify("Broadcast sent: "+msg);}
 }
 
-// ======== Settings ========
+// ===== Settings =====
 function saveSettings(){
-    config.theme=document.getElementById("theme").value;
-    notify("Theme saved ✅");
+  config.theme=document.getElementById("theme").value;
+  notify("Theme saved ✅");
 }
+
+// ===== Initial Demo =====
+renderUsers();
+notify("Admin Panel Ready 🚀");
 </script>
 
 </body>
