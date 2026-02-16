@@ -1,236 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  <title>ThanHub — Secure Key Access</title>
-
-  <!-- Favicon (auto-bump only) -->
-  <link rel="icon" type="image/png" href="logo.png?v=1770864907">
-  <link rel="apple-touch-icon" href="logo.png?v=1770864907">
-
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="landpage.css?v=1770864907">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="ThanHub — Secure Key Access">
-  <meta property="og:description" content="Secure, fast, and trusted key access platform.">
-  <meta property="og:url" content="https://thanhub.site">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atomic Hub Admin</title>
+<style>
+body{margin:0;font-family:Arial;background:#0b0f14;color:white;}
+header{padding:20px;background:#111827;text-align:center;}
+nav{float:left;width:220px;height:100vh;background:#161b22;padding:15px;}
+nav button{display:block;width:100%;margin:5px 0;padding:10px;border:none;border-radius:5px;background:#5865F2;color:white;cursor:pointer;}
+main{margin-left:220px;padding:20px;}
+.card{background:#1b222b;padding:15px;border-radius:10px;margin-bottom:10px;}
+input,select{width:100%;padding:8px;margin-top:5px;border-radius:5px;border:none;}
+#notif{position:fixed;top:20px;right:20px;background:#5865F2;padding:10px 20px;border-radius:8px;display:none;}
+</style>
 </head>
 <body>
 
-  
+<div id="notif"></div>
 
-    <div class="stars"></div>
+<header><h1>⚛️ Atomic Hub Admin Panel</h1></header>
 
-<main class="container">
-
-  <!-- HERO -->
-<section id="home" class="logo-hero">
-  <img src="thanhublogo.png" alt="ThanHub Logo">
-  <span class="logo-name">THANHUB</span>
-</section>
-  <section class="hero">
-    <h1>Secure Key Access<br>Without the Hassle</h1>
-    <p>Free verification or instant premium — you choose</p>
-<div class="trust-bar">
-  🟢 <span id="liveUsers">1,247</span> active sessions · All systems operational
-</div>
-<a href="https://discord.gg/thanhub" target="_blank" class="discord-pill">
-  <span class="discord-left">
-
-<span class="discord-icon">
-  <svg viewBox="0 0 127.14 96.36" width="20" height="16">
-    <path
-      fill="#5865F2"
-      d="M107.7 8.07A105.15 105.15 0 0081.47 0a72.06 72.06 0 00-3.36 6.83 97.68 97.68 0 00-29.08 0A72.37 72.37 0 0045.67 0 105.89 105.89 0 0019.39 8.09C2.79 32.65-2.17 56.6.3 80.21a105.73 105.73 0 0032.17 16.15 77.7 77.7 0 006.89-11.08 68.42 68.42 0 01-10.82-5.16c.91-.67 1.8-1.36 2.66-2.08 20.84 9.79 43.44 9.79 64.06 0 .87.72 1.76 1.41 2.66 2.08a68.68 68.68 0 01-10.84 5.17 77.16 77.16 0 006.89 11.07A105.25 105.25 0 00126.84 80.2c3.52-28.27-6.02-52.02-19.14-72.13zM42.45 65.69c-6.27 0-11.42-5.73-11.42-12.8 0-7.08 5.06-12.8 11.42-12.8 6.41 0 11.52 5.73 11.42 12.8 0 7.07-5.06 12.8-11.42 12.8zm42.24 0c-6.27 0-11.42-5.73-11.42-12.8 0-7.08 5.06-12.8 11.42-12.8 6.41 0 11.52 5.73 11.42 12.8 0 7.07-5.06 12.8-11.42 12.8z"
-    />
-  </svg>
-</span>
-
-    <span>
-      <span id="discordTotal">—</span> Online
-    </span>
-
-  </span>
-
-  <span class="discord-status">
-    <span class="status-dot"></span>
-  </span>
-</a>
-  </section>
-
-  <!--support game-->
-<div class="supported-games">
-  <span class="games-title">Supported Games:</span>
-
-  <div class="games-list">
-
-<a href="javascript:void(0);" class="game-pill">
-  <span class="game-dot"></span>
-  Fisch
-</a>
-
-<a href="javascript:void(0);" class="game-pill">
-  <span class="game-dot"></span>
-  The Forge
-</a>
-
-<a href="javascript:void(0);" class="game-pill">
-  <span class="game-dot"></span>
-  Fish It
-</a>
-
-<a href="javascript:void(0);" class="game-pill">
-  <span class="game-dot"></span>
-  The Abyss
-</a>
-
-
-  </div>
-</div>
-
-  <!-- CHOICES -->
-  <section class="choices">
-
-    <a href="getkey.html" class="choice-card">
-      <span class="tag">FREE</span>
-      <h2>Get Free Key</h2>
-      <p>Complete verification to receive temporary access</p>
-      <span class="action">Continue →</span>
-    </a>
-
-    <a href="purchase.html" class="choice-card premium">
-      <span class="tag premium">POPULAR</span>
-      <h2>Go Premium</h2>
-      <p>Instant access, no ads, no cooldown</p>
-      <span class="action">Upgrade →</span>
-    </a>
-
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="feature">
-      <div class="icon">🔐</div>
-      <h3>Secure System</h3>
-      <p>Protected against abuse and bypass attempts</p>
-    </div>
-
-    <div class="feature">
-      <div class="icon">⚡</div>
-      <h3>Fast Access</h3>
-      <p>Optimized flow with minimal waiting time</p>
-    </div>
-
-    <div class="feature">
-      <div class="icon">🛡</div>
-      <h3>Trusted Platform</h3>
-      <p>Used daily by thousands of active users</p>
-    </div>
-  </section>
-
-  <!-- SOCIAL PROOF -->
-  <section class="social">
-    <div class="rating-box">
-      <div class="stars">⭐⭐⭐⭐⭐</div>
-      <div class="score">4.9 / 5</div>
-      <p>Based on 12,400+ user reviews</p>
-    </div>
-
-    <div class="testimonials">
-      <div class="quote">“Very clean and reliable system.”</div>
-      <div class="quote">“Premium saves so much time.”</div>
-      <div class="quote">“Best key access UI I’ve seen.”</div>
-    </div>
-  </section>
-
-</main>
-<section id="faq" class="faq-section">
-  <h2>Frequently Asked <span>Questions</span></h2>
-  <p class="faq-sub">Find answers to common questions about ThanHub</p>
-
-  <div class="faq-card">
-
-    <div class="faq-item active">
-      <button class="faq-question">
-        What is ThanHub?
-        <span class="arrow">⌃</span>
-      </button>
-      <div class="faq-answer">
-        ThanHub is a secure script key access platform that lets you safely
-        unlock and manage scripts with anti-abuse protection.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        Is ThanHub safe to use?
-        <span class="arrow">⌃</span>
-      </button>
-      <div class="faq-answer">
-        Yes. ThanHub uses HWID protection, cooldowns, and abuse prevention
-        systems to keep keys secure.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        How do I get a key?
-        <span class="arrow">⌃</span>
-      </button>
-      <div class="faq-answer">
-        You can get a free key through verification or unlock instant access
-        with a premium plan.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">
-        How do I get support?
-        <span class="arrow">⌃</span>
-      </button>
-      <div class="faq-answer">
-        Join our Discord server for announcements, updates, and direct support.
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<nav class="pill-nav">
-  <button class="pill-item active" data-target="home" type="button">
-    <span class="pill-icon">🏠</span>
-    <span class="pill-label">Home</span>
-  </button>
-
-  <button class="pill-item" data-target="faq" type="button">
-    <span class="pill-icon">❓</span>
-    <span class="pill-label">FAQ</span>
-  </button>
-
-  <a class="pill-item" href="purchase.html">
-    <span class="pill-icon">💳</span>
-    <span class="pill-label">Purchase</span>
-  </a>
-
-  <a class="pill-item" href="reseller.html">
-    <span class="pill-icon">👥</span>
-    <span class="pill-label">Reseller</span>
-  </a>
+<nav>
+<button onclick="show('dashboard')">Dashboard</button>
+<button onclick="show('users')">Users</button>
+<button onclick="show('script')">Script Config</button>
+<button onclick="show('premium')">Premium</button>
+<button onclick="show('notif')">Notifications</button>
+<button onclick="show('settings')">Settings</button>
 </nav>
 
-<footer class="footer">
-  © 2026 ThanHub — Secure Access System
-</footer>
-<script src="landpage.js?v=1770864907"></script>
-<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "39214de73b754a1e98afb3b869d929c2"}'></script><!-- Cloudflare Pages Analytics --></body>
+<main>
 
+<!-- DASHBOARD -->
+<div id="dashboard">
+<h2>Dashboard Overview</h2>
+<div class="card">
+Total Users: <span id="totalUsers">0</span><br>
+Active Users: <span id="activeUsers">0</span><br>
+Executions: <span id="totalExec">0</span><br>
+Current Version: <span id="currentVer">1.0</span><br>
+Script Status: <span id="scriptStatus">🟢 Work</span>
+</div>
+</div>
+
+<!-- USERS -->
+<div id="users" style="display:none;">
+<h2>User Management</h2>
+<div class="card">
+<input id="newUser" placeholder="Add username">
+<button onclick="addUser()">Add User</button>
+</div>
+<div class="card" id="userList"></div>
+</div>
+
+<!-- SCRIPT CONFIG -->
+<div id="script" style="display:none;">
+<h2>Script Configuration</h2>
+<div class="card">
+<label>Version</label><input id="sVersion">
+<label>Status</label>
+<select id="sStatus">
+<option>🟢 Work</option>
+<option>🟡 Update</option>
+<option>🔴 Down</option>
+</select>
+<label>Script Link</label><input id="sLink">
+<button onclick="saveScriptConfig()">Save</button>
+</div>
+</div>
+
+<!-- PREMIUM -->
+<div id="premium" style="display:none;">
+<h2>Premium System</h2>
+<div class="card">
+<label>Premium Code</label><input id="pCode">
+<button onclick="savePremium()">Save</button>
+</div>
+</div>
+
+<!-- NOTIFICATIONS -->
+<div id="notifPanel" style="display:none;">
+<h2>Send Notification</h2>
+<div class="card">
+<input id="notifMsg" placeholder="Message to all users">
+<button onclick="broadcast()">Send</button>
+</div>
+</div>
+
+<!-- SETTINGS -->
+<div id="settings" style="display:none;">
+<h2>Settings</h2>
+<div class="card">
+<label>Theme</label>
+<select id="theme">
+<option>Dark</option>
+<option>Light</option>
+<option>Neon</option>
+</select>
+<button onclick="saveSettings()">Save</button>
+</div>
+</div>
+
+</main>
+
+<script>
+// ======== Page Switch ========
+function show(id){
+    let pages=['dashboard','users','script','premium','notifPanel','settings'];
+    pages.forEach(p=>document.getElementById(p).style.display='none');
+    document.getElementById(id).style.display='block';
+}
+
+// ======== Notification ========
+function notify(msg){
+    let n = document.getElementById("notif");
+    n.innerText = msg;
+    n.style.display="block";
+    setTimeout(()=>n.style.display="none",3000);
+}
+
+// ======== Fake DB / Config ========
+let config={
+    users:[],
+    version:'1.0',
+    status:'🟢 Work',
+    scriptLink:'https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua',
+    premium:'ATOMICVIP',
+    theme:'Dark'
+}
+
+// ======== Dashboard ========
+function updateDashboard(){
+    document.getElementById("totalUsers").innerText=config.users.length;
+    document.getElementById("activeUsers").innerText=config.users.length; // demo
+    document.getElementById("totalExec").innerText=5421; // demo
+    document.getElementById("currentVer").innerText=config.version;
+    document.getElementById("scriptStatus").innerText=config.status;
+}
+updateDashboard();
+
+// ======== Users ========
+function addUser(){
+    let u=document.getElementById("newUser").value;
+    if(u){config.users.push(u); document.getElementById("newUser").value=''; renderUsers(); updateDashboard(); notify("User added ✅");}
+}
+function renderUsers(){
+    let list=document.getElementById("userList");
+    list.innerHTML='';
+    config.users.forEach((u,i)=>{list.innerHTML+=`<div>${i+1}. ${u} <button onclick="removeUser(${i})">Remove</button></div>`;});
+}
+function removeUser(i){config.users.splice(i,1); renderUsers(); updateDashboard(); notify("User removed ❌");}
+
+// ======== Script Config ========
+function saveScriptConfig(){
+    config.version=document.getElementById("sVersion").value;
+    config.status=document.getElementById("sStatus").value;
+    config.scriptLink=document.getElementById("sLink").value;
+    updateDashboard(); notify("Script config saved ✅");
+}
+
+// ======== Premium ========
+function savePremium(){
+    config.premium=document.getElementById("pCode").value;
+    notify("Premium code updated ✅");
+}
+
+// ======== Notifications ========
+function broadcast(){
+    let msg=document.getElementById("notifMsg").value;
+    if(msg) notify("Broadcast sent: "+msg);
+}
+
+// ======== Settings ========
+function saveSettings(){
+    config.theme=document.getElementById("theme").value;
+    notify("Theme saved ✅");
+}
+</script>
+
+</body>
 </html>
